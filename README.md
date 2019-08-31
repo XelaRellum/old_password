@@ -24,9 +24,9 @@ Planned implementations:
 * V
 * GO
 
-### C
+### Reference implementation in C
 
-This is the original source code of the function `my_make_scrambled_password_323` (see <https://github.com/MariaDB/server> , `/server/sql/password.c`).
+This is the original source code of the function `my_make_scrambled_password_323` (see <https://github.com/MariaDB/server> in the file `/server/sql/password.c`).
 
 Note: this code is licensed under the original GPL v2.
 
