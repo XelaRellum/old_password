@@ -13,12 +13,12 @@ You can use these functions to keep your applications running even after the `OL
 Current implementations:
 
 * C (this is the reference implementation)
+* Elixir
 * Python
 
 Planned implementations:
 
 * Julia
-* Elixir
 * Erlang
 * Clojure
 * V
