@@ -10,9 +10,13 @@ You can use these functions to keep your applications running even after the `OL
 
 ## Implementations
 
+Current implementations:
+
+* C (this is the reference implementation)
+* Python
+
 Planned implementations:
 
-* Python
 * Julia
 * Elixir
 * Erlang

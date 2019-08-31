@@ -31,11 +31,6 @@ TEST_CASE("examples from MariaDB GitHub")
   }
 #endif
 
-  SECTION("a")
-  {
-    REQUIRE(old_password("a") == "60671c896665c3fa");
-  }
-
   SECTION("abc")
   {
     REQUIRE(old_password("abc") == "7cd2b5942be28759");
@@ -44,5 +39,23 @@ TEST_CASE("examples from MariaDB GitHub")
 
 TEST_CASE("different cases")
 {
-  REQUIRE(old_password("\xc3\xa4") == "0751368d49315f7f");
+  SECTION("a")
+  {
+    REQUIRE(old_password("a") == "60671c896665c3fa");
+  }
+
+  SECTION("Umlaut")
+  {
+    REQUIRE(old_password("\xc3\xa4") == "0751368d49315f7f");
+  }
+
+  SECTION("spaces in password are skipped")
+  {
+    REQUIRE(old_password("pass word") == old_password("password"));
+  }
+
+  SECTION("tabs in password are skipped")
+  {
+    REQUIRE(old_password("pass\tword") == old_password("password"));
+  }
 }
