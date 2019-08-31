@@ -10,6 +10,16 @@ You can use these functions to keep your applications running even after the `OL
 
 ## Implementations
 
+Planned implementations:
+
+* Python
+* Julia
+* Elixir
+* Erlang
+* Clojure
+* V
+* GO
+
 ### C
 
 This is the original source code of the function `my_make_scrambled_password_323` (see <https://github.com/MariaDB/server> , `/server/sql/password.c`).
