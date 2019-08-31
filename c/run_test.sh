@@ -1,6 +1,7 @@
 #!/bin/sh
 export CTEST_OUTPUT_ON_FAILURE=1
-cmake -H. -B_builds\RelWithDebInfo -DCMAKE_BUILD_TYPE=RelWithDebInfo -G "Ninja"
-cmake --build _builds\RelWithDebInfo
-ninja -C _builds\RelWithDebInfo test
-
+set -e
+cmake -H. -B_builds -G "Ninja"
+cmake --build _builds
+ninja -C _builds test
+# _builds/oldpassword_c_test
