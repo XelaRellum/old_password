@@ -14,6 +14,7 @@ Current implementations:
 
 * C (this is the reference implementation)
 * Elixir
+* GO
 * Python
 
 Planned implementations:
@@ -22,7 +23,6 @@ Planned implementations:
 * Erlang
 * Clojure
 * V
-* GO
 
 ### Reference implementation in C
 
