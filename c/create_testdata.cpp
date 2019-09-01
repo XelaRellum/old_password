@@ -57,7 +57,7 @@ struct Words
 
     void write_line(const std::string &password, const std::string &hash)
     {
-        out << "\"" << password << "\";\"" << hash << "\"\n";
+        out << password << ";" << hash << "\n";
     }
 
     std::string old_password(const std::string &password) const
@@ -93,7 +93,7 @@ TEST_CASE_METHOD(Words, "create testdata")
     for (int words = 1; words <= 20; words += 2)
     {
         // list of long words
-        int count = 10000;
+        int count = 1000;
         while (count--)
         {
             std::string password = long_random_word(words);

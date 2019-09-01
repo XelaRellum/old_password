@@ -2,6 +2,9 @@ import unittest
 import pytest
 from old_password import old_password
 
+import csv
+import re
+
 
 @pytest.mark.parametrize("password,expected_hash", [
     (None, None),
@@ -28,3 +31,13 @@ def test_password_with_tab():
     """
 
     assert old_password("pass\tword") == old_password("password")
+
+
+def test_password_from_testdata():
+    with open("../testdata.csv", "r") as file:
+        for line in file:
+            line = line.strip()
+            password, expected_hash = line.split(";")
+            hash = old_password(password)
+
+            assert hash == expected_hash, "password: %s" % password
