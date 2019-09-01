@@ -7,6 +7,7 @@ enable_testing()
 add_executable(old_password_test
   old_password.c
   old_password_test.cpp
+  create_testdata.cpp
 )
 
 target_include_directories(old_password_test
