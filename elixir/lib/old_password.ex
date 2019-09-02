@@ -2,7 +2,7 @@ defmodule OldPassword do
   @moduledoc """
   Elixir implementation of `old_password`.
   """
-  alias OldPassword.Math32
+  use Bitwise
 
   @doc """
   Create a legacy hash from a password.
@@ -41,27 +41,31 @@ defmodule OldPassword do
   defp old_password([h | t], nr, add, nr2) do
     tmp = h
     # nr ^= (((nr & 63) + add) * tmp) + (nr << 8)
-    nr =
-      Math32.xor(
-        nr,
-        Math32.add(Math32.mul(Math32.add(Math32.and32(nr, 63), add), tmp), Math32.sleft(nr, 8))
-      )
+    nr = nr ^^^ (((nr &&& 63) +  add) * tmp) + (nr <<< 8)
 
     # nr2 += (nr2 << 8) ^ nr;
-    nr2 = Math32.add(nr2, Math32.xor(Math32.sleft(nr2, 8), nr))
+    nr2 = (nr2 + ((nr2 <<< 8) ^^^ nr))
     # add += tmp;
-    add = Math32.add(add, tmp)
+    add = (add + tmp)
 
     old_password(t, nr, add, nr2)
   end
 
   defp old_password([], nr, _add, nr2) do
     # result[0] = nr & (((ulong)1L << 31) - 1L); /* Don't use sign bit (str2int) */
-    result0 = Math32.and32(nr, 0x7FFFFFFF)
+    result0 = nr &&& 0x7FFFFFFF
 
     # result[1] = nr2 & (((ulong)1L << 31) - 1L);
-    result1 = Math32.and32(nr2, 0x7FFFFFFF)
+    result1 = nr2 &&& 0x7FFFFFFF
 
-    Math32.to_hex(result0) <> Math32.to_hex(result1)
+    to_hex(result0) <> to_hex(result1)
+  end
+
+  defp to_hex(v) do
+    v
+    |> band(0xFFFFFFFF)
+    |> Integer.to_string(16)
+    |> String.downcase()
+    |> String.pad_leading(8, "0")
   end
 end
