@@ -41,12 +41,12 @@ defmodule OldPassword do
   defp old_password([h | t], nr, add, nr2) do
     tmp = h
     # nr ^= (((nr & 63) + add) * tmp) + (nr << 8)
-    nr = bxor(nr, (((nr &&& 63) +  add) * tmp) + (nr <<< 8))
+    nr = bxor(nr, ((nr &&& 63) + add) * tmp + (nr <<< 8))
 
     # nr2 += (nr2 << 8) ^ nr;
     nr2 = nr2 + bxor(nr2 <<< 8, nr)
     # add += tmp;
-    add = (add + tmp)
+    add = add + tmp
 
     old_password(t, nr, add, nr2)
   end
